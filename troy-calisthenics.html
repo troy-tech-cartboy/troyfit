@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Troy • 10–15 Min Calisthenics Plan</title>
+  <meta name="theme-color" content="#0b1220"/>
+  <style>
+    :root{
+      --bg:#0b1220; --card:#121b2e; --muted:#9fb0d0; --text:#eaf0ff;
+      --accent:#62e6a7; --warn:#ffcc66; --danger:#ff6b6b; --line:#233253;
+      --chip:#182545; --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+      font-synthesis-weight:none;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: radial-gradient(1000px 500px at 20% 0%, #14224a 0%, var(--bg) 60%);
+      color:var(--text);
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1050px; margin:0 auto; padding:18px 16px 40px}
+    header{
+      display:flex; gap:14px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
+      margin:10px 0 14px;
+    }
+    .title{
+      display:flex; flex-direction:column; gap:6px;
+    }
+    .title h1{margin:0; font-size:20px; letter-spacing:.2px}
+    .title p{margin:0; color:var(--muted); font-size:13px; line-height:1.35}
+    .top-actions{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    .btn{
+      border:1px solid var(--line); background:linear-gradient(180deg, #1a2a52, #121b2e);
+      color:var(--text); padding:10px 12px; border-radius:14px; cursor:pointer;
+      box-shadow: var(--shadow); font-weight:600; font-size:13px;
+    }
+    .btn.secondary{background:transparent; box-shadow:none}
+    .btn:active{transform:translateY(1px)}
+    .grid{
+      display:grid; grid-template-columns: 1.2fr .8fr; gap:14px;
+    }
+    @media (max-width: 900px){
+      .grid{grid-template-columns:1fr}
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:14px;
+      box-shadow: var(--shadow);
+    }
+    .row{display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap}
+    .kpi{display:flex; gap:10px; flex-wrap:wrap}
+    .pill{
+      display:inline-flex; gap:8px; align-items:center;
+      background:rgba(98,230,167,.10);
+      border:1px solid rgba(98,230,167,.35);
+      color:var(--text); padding:8px 10px; border-radius:999px; font-size:12px;
+    }
+    .pill.gray{
+      background:rgba(159,176,208,.10);
+      border:1px solid rgba(159,176,208,.25);
+      color:var(--text);
+    }
+    .pill.warn{
+      background:rgba(255,204,102,.10);
+      border:1px solid rgba(255,204,102,.28);
+    }
+    .pill.danger{
+      background:rgba(255,107,107,.10);
+      border:1px solid rgba(255,107,107,.28);
+    }
+    .small{color:var(--muted); font-size:12px; line-height:1.45}
+    .h2{margin:0 0 10px; font-size:15px; letter-spacing:.2px}
+    .section{margin-top:12px}
+    .workout-title{
+      display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+      margin-bottom:6px;
+    }
+    .workout-title .name{font-size:16px; font-weight:800}
+    .meta{display:flex; gap:8px; flex-wrap:wrap}
+    .chip{
+      background: var(--chip); border:1px solid var(--line);
+      padding:6px 9px; border-radius:999px; color:var(--muted); font-size:12px;
+    }
+    .list{display:flex; flex-direction:column; gap:10px; margin-top:10px}
+    .ex{
+      border:1px solid var(--line); border-radius:16px; padding:10px; background:rgba(0,0,0,.12);
+    }
+    .ex-head{display:flex; gap:10px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap}
+    .ex-name{font-weight:800}
+    .ex-tags{display:flex; gap:6px; flex-wrap:wrap}
+    .tag{
+      font-size:11px; padding:5px 8px; border-radius:999px;
+      border:1px solid rgba(159,176,208,.25); color:var(--muted);
+      background:rgba(159,176,208,.08);
+    }
+    .tag.accent{
+      border-color:rgba(98,230,167,.35); color:var(--text);
+      background:rgba(98,230,167,.10);
+    }
+    .ex-body{margin-top:6px}
+    details{
+      border-top:1px solid rgba(35,50,83,.6); margin-top:8px; padding-top:8px;
+    }
+    summary{cursor:pointer; color:var(--muted); font-size:12px}
+    .timer{
+      display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+      margin-top:10px;
+      border-top:1px solid rgba(35,50,83,.6);
+      padding-top:10px;
+    }
+    .timer .time{font-size:28px; font-weight:900; letter-spacing:.6px}
+    .timer-controls{display:flex; gap:8px; flex-wrap:wrap}
+    input[type="date"]{
+      background:#0f1930; color:var(--text); border:1px solid var(--line);
+      border-radius:12px; padding:9px 10px; font-weight:600;
+    }
+    .two{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    @media (max-width:560px){ .two{grid-template-columns:1fr} }
+    .calendar{
+      display:grid; grid-template-columns:repeat(7,1fr); gap:8px;
+    }
+    .day{
+      border:1px solid var(--line); border-radius:14px; padding:10px;
+      background:rgba(0,0,0,.12);
+      min-height:86px;
+      display:flex; flex-direction:column; gap:6px;
+    }
+    .day .dtop{display:flex; justify-content:space-between; align-items:center}
+    .day .dow{font-size:11px; color:var(--muted)}
+    .day .num{font-weight:900}
+    .day .wname{font-size:12px; font-weight:800}
+    .day.done{border-color:rgba(98,230,167,.45); background:rgba(98,230,167,.08)}
+    .day.today{outline:2px solid rgba(255,204,102,.45)}
+    .footer-note{margin-top:10px; color:var(--muted); font-size:12px}
+    .checkline{
+      display:flex; gap:10px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+      margin-top:10px;
+    }
+    label.chk{display:flex; gap:8px; align-items:center; font-weight:700}
+    input[type="checkbox"]{width:18px; height:18px}
+    .danger-note{color:var(--muted); font-size:12px; line-height:1.45}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="title">
+      <h1>Daily 10–15 Minute Calisthenics • Troy Plan</h1>
+      <p>
+        Beginner • Joint-friendly (wrists/knees/back/ankles) • Bands + Dumbbells • 6 days/week • Sunday rest • Friendly progression
+      </p>
+    </div>
+    <div class="top-actions">
+      <button class="btn secondary" id="openSettings">Start date & reset</button>
+      <button class="btn" id="goToday">Go to today</button>
+    </div>
+  </header>
+
+  <div class="grid">
+    <div class="card" id="todayCard">
+      <div class="row">
+        <div class="kpi">
+          <span class="pill" id="pillDay">Day —</span>
+          <span class="pill gray" id="pillWeek">Week —</span>
+          <span class="pill warn" id="pillTime">10–15 min</span>
+        </div>
+        <div class="kpi">
+          <span class="pill gray" id="pillStreak">Streak: —</span>
+          <span class="pill gray" id="pillDone">Completed: —%</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="workout-title">
+          <div>
+            <div class="name" id="workoutName">—</div>
+            <div class="small" id="workoutDesc">—</div>
+          </div>
+          <div class="meta">
+            <span class="chip" id="focusChip">—</span>
+            <span class="chip" id="jointChip">Joint-friendly</span>
+          </div>
+        </div>
+
+        <div class="checkline">
+          <label class="chk"><input type="checkbox" id="doneToggle" /> Mark today as done</label>
+          <span class="small" id="doneHint">Saved on this device</span>
+        </div>
+
+        <div class="list" id="exerciseList"></div>
+
+        <div class="timer">
+          <div>
+            <div class="small">Guided timer (optional)</div>
+            <div class="time" id="timerText">00:00</div>
+            <div class="small" id="timerMode">Ready</div>
+          </div>
+          <div class="timer-controls">
+            <button class="btn" id="startTimer">Start</button>
+            <button class="btn secondary" id="pauseTimer">Pause</button>
+            <button class="btn secondary" id="resetTimer">Reset</button>
+          </div>
+        </div>
+
+        <div class="footer-note">
+          Tip: “Sore but safe” is okay. Sharp pain (especially back/knees/wrists/ankles) = stop, scale down, or swap the move.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="h2">This week (Mon–Sun)</div>
+      <div class="calendar" id="calendar"></div>
+
+      <div class="section">
+        <div class="h2">Weight goal tracker (simple)</div>
+        <div class="small">
+          You want to lose <b>55 lb by Oct 2026</b>. From today, that’s roughly <b>~1.0–1.5 lb/week</b> on average.
+          Combine this plan with daily walking + a calorie deficit for best results.
+        </div>
+        <details>
+          <summary>Helpful targets (safe, realistic)</summary>
+          <div class="danger-note" style="margin-top:8px">
+            • Aim for 7,000–10,000 steps/day (build up gradually).<br/>
+            • Protein + fiber help hunger (lean protein + veggies + beans).<br/>
+            • If joints flare up, keep workouts but reduce range/reps and add extra mobility days.<br/>
+            • Since you’ve got joint soreness and are 56, consider checking in with your clinician before ramping volume.
+          </div>
+        </details>
+      </div>
+
+      <div class="section">
+        <div class="h2">How progression works</div>
+        <div class="small">
+          Weeks 1–2: easy on joints, learn form.<br/>
+          Weeks 3–4: small rep/time bump.<br/>
+          Weeks 5–6: add a little density (more work, same time).<br/>
+          Weeks 7–8: stronger variations (still joint-friendly).<br/>
+          After week 8: repeat week 7–8 and keep inching up.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings modal (simple) -->
+  <dialog id="settingsDialog" style="border:none;border-radius:18px;max-width:720px;width:92%;background:#0f1930;color:var(--text);padding:14px;box-shadow:var(--shadow)">
+    <form method="dialog">
+      <div class="row" style="margin-bottom:10px">
+        <div style="font-weight:900">Settings</div>
+        <button class="btn secondary">Close</button>
+      </div>
+
+      <div class="two">
+        <div class="card" style="box-shadow:none;background:rgba(255,255,255,.04)">
+          <div class="h2">Program start date</div>
+          <div class="small">This decides what “Day 1” is. Change it if you want a clean restart.</div>
+          <div style="margin-top:10px">
+            <input type="date" id="startDateInput"/>
+            <button class="btn" id="saveStartDate" type="button" style="margin-left:8px">Save</button>
+          </div>
+        </div>
+
+        <div class="card" style="box-shadow:none;background:rgba(255,255,255,.04)">
+          <div class="h2">Reset progress</div>
+          <div class="small">Clears checkmarks/streak on this device only.</div>
+          <div style="margin-top:10px">
+            <button class="btn" id="resetProgress" type="button">Reset</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="h2">Joint-friendly scaling rules</div>
+        <div class="small">
+          • Wrists: use dumbbells as handles for push-ups, or do wall/incline push-ups.<br/>
+          • Knees/ankles: choose sit-to-stand, smaller squat depth, slower tempo, avoid jumping.<br/>
+          • Back: keep neutral spine; hinge from hips; stop if pain is sharp or radiating.
+        </div>
+      </div>
+    </form>
+  </dialog>
+</div>
+
+<script>
+(function(){
+  // -----------------------------
+  // Data: exercises with demo links
+  // -----------------------------
+  const EX = {
+    warmup_breath: {
+      name: "Box breathing + posture reset",
+      tags:["Warm-up","Back-friendly"],
+      how:"Inhale 4s • hold 4s • exhale 4s • hold 4s. Stand tall, gently pull shoulders down & back.",
+      demo:"https://www.youtube.com/results?search_query=box+breathing+exercise"
+    },
+    ankle_pumps: {
+      name:"Ankle pumps + circles",
+      tags:["Warm-up","Ankles"],
+      how:"Seated or standing holding a chair. 20 pumps + 10 circles each direction per ankle.",
+      demo:"https://www.youtube.com/results?search_query=ankle+circles+mobility+exercise"
+    },
+    sit_to_stand: {
+      name:"Sit-to-Stand (chair squat)",
+      tags:["Legs","Knee-friendly"],
+      how:"Sit on chair, feet under knees. Lean forward, stand. Sit back slowly. Use arms if needed.",
+      demo:"https://www.nhs.uk/live-well/exercise/strength-and-flex-exercise-plan-how-to-videos/"
+    },
+    wall_pushup: {
+      name:"Wall / Incline Push-up (neutral wrists)",
+      tags:["Push","Wrist-friendly"],
+      how:"Hands on wall or counter. Body straight. Lower slowly, press up. Use dumbbells as handles if on floor.",
+      demo:"https://www.youtube.com/results?search_query=incline+push+up+neutral+wrist"
+    },
+    band_row: {
+      name:"Resistance Band Row",
+      tags:["Pull","Posture"],
+      how:"Anchor band at door handle height. Pull elbows back, squeeze shoulder blades. Slow return.",
+      demo:"https://www.youtube.com/results?search_query=resistance+band+row+door+anchor+how+to"
+    },
+    band_pullapart: {
+      name:"Band Pull-Apart",
+      tags:["Shoulders","Posture"],
+      how:"Arms straight at chest height. Pull band apart by squeezing upper back. Control back in.",
+      demo:"https://www.youtube.com/watch?v=smSSXITNpCI"
+    },
+    glute_bridge: {
+      name:"Glute Bridge",
+      tags:["Glutes","Back-friendly"],
+      how:"On back, knees bent. Brace abs, squeeze glutes, lift hips. Pause 1s. Lower slow.",
+      demo:"https://www.youtube.com/watch?v=GiHuPuiWgpc"
+    },
+    dead_bug: {
+      name:"Dead Bug (core control)",
+      tags:["Core","Back-friendly"],
+      how:"On back, ribs down. Move opposite arm/leg slowly without arching low back.",
+      demo:"https://www.youtube.com/watch?v=MCVX9wRd_h0"
+    },
+    bird_dog: {
+      name:"Bird Dog",
+      tags:["Core","Back-friendly"],
+      how:"Hands/knees. Reach opposite arm/leg. Keep hips level. Slow and controlled.",
+      demo:"https://www.youtube.com/watch?v=QABW99qPiNM"
+    },
+    db_rdl: {
+      name:"Dumbbell Romanian Deadlift (hip hinge)",
+      tags:["Posterior chain","Back-safe form"],
+      how:"Soft knees. Hinge hips back, dumbbells slide down thighs. Keep spine neutral. Stand by squeezing glutes.",
+      demo:"https://www.youtube.com/watch?v=OJPUg6Y2eCo"
+    },
+    pallof: {
+      name:"Band Pallof Press (anti-rotation core)",
+      tags:["Core","Golf-friendly"],
+      how:"Band anchored at chest height. Press straight out, resist twisting. Hold 1–2s.",
+      demo:"https://www.youtube.com/watch?v=BGcEPBAIpdQ"
+    },
+    farmer_carry: {
+      name:"Farmer Carry (dumbbells)",
+      tags:["Full body","Posture"],
+      how:"Stand tall, ribs down, walk slow 30–60s. Stop if grip or back fails.",
+      demo:"https://www.youtube.com/results?search_query=farmer+carry+how+to+dumbbells"
+    },
+    calf_raise: {
+      name:"Calf Raises (hold chair)",
+      tags:["Ankles","Balance"],
+      how:"Rise up, pause 1s, lower slowly. 10–20 reps.",
+      demo:"https://www.nhs.uk/live-well/exercise/strength-and-flex-exercise-plan-how-to-videos/"
+    },
+    toe_raise: {
+      name:"Toe Raises (tibialis)",
+      tags:["Ankles","Shins"],
+      how:"Heels down, lift toes up. 10–20 reps. Great for ankles/shins.",
+      demo:"https://www.youtube.com/results?search_query=tibialis+raise+exercise+toe+raises"
+    },
+    gentle_walk: {
+      name:"Easy walk in place / around the house",
+      tags:["Conditioning","Low impact"],
+      how:"Keep it easy. Breathe through nose if you can. 2–5 minutes.",
+      demo:"https://www.youtube.com/results?search_query=walking+in+place+low+impact"
+    },
+    mobility_flow: {
+      name:"5-move mobility flow (hips + T-spine + calves)",
+      tags:["Mobility","Joint care"],
+      how:"30s each: hip hinge stretch, thoracic open book, calf stretch, hamstring floss, gentle quad stretch.",
+      demo:"https://www.youtube.com/results?search_query=10+minute+mobility+flow+hips+thoracic+ankles"
+    }
+  };
+
+  // -----------------------------
+  // Program templates (6 days + Sunday rest)
+  // Work is ~10–15 min total.
+  // Progression ramps reps/time.
+  // -----------------------------
+  function progression(week){
+    // week: 1..8
+    // Keep it joint-friendly; small increments.
+    const w = Math.min(Math.max(week,1),8);
+    const base = {
+      // circuit work/rest in seconds
+      work: 30, rest: 15, rounds: 2,
+      repsLight: 8, repsMed: 10, repsHigh: 12,
+      hold: 20, carry: 30
+    };
+    if(w<=2) return base;
+    if(w<=4) return {...base, work:35, rest:15, rounds:2, repsLight:10, repsMed:12, repsHigh:14, hold:25, carry:40};
+    if(w<=6) return {...base, work:40, rest:15, rounds:2, repsLight:10, repsMed:12, repsHigh:15, hold:30, carry:50};
+    return {...base, work:40, rest:10, rounds:3, repsLight:10, repsMed:14, repsHigh:16, hold:35, carry:60};
+  }
+
+  const workouts = {
+    A: (p)=>({
+      name:"Strength A (push + legs + core)",
+      focus:"Strength • Fat loss",
+      desc:`2–3 short circuits. Wrist/knee friendly. Week settings: ${p.work}s work / ${p.rest}s rest, ${p.rounds}–3 rounds.`,
+      time:"10–15 min",
+      exercises:[
+        {id:"warmup_breath", dose:`1 minute`},
+        {id:"ankle_pumps", dose:`1 minute`},
+        {id:"sit_to_stand", dose:`${p.repsMed} reps (or ${p.work}s)`},
+        {id:"wall_pushup", dose:`${p.repsLight}–${p.repsMed} reps (or ${p.work}s)`},
+        {id:"glute_bridge", dose:`${p.repsMed} reps (or ${p.work}s)`},
+        {id:"dead_bug", dose:`${p.hold}s slow reps`},
+        {id:"calf_raise", dose:`${p.repsHigh} reps`}
+      ],
+      timer:{work:p.work, rest:p.rest, rounds:p.rounds, hint:"Cycle through the main moves (Sit-to-Stand → Push-up → Bridge → Dead Bug → Calf Raise)."}
+    }),
+    B: (p)=>({
+      name:"Strength B (pull + hinge + core)",
+      focus:"Posture • Back-safe strength",
+      desc:`Band pulling + hip hinge + anti-rotation core. Week settings: ${p.work}s work / ${p.rest}s rest, ${p.rounds}–3 rounds.`,
+      time:"10–15 min",
+      exercises:[
+        {id:"warmup_breath", dose:`1 minute`},
+        {id:"mobility_flow", dose:`2–3 minutes`},
+        {id:"band_row", dose:`${p.work}s or ${p.repsMed} reps`},
+        {id:"band_pullapart", dose:`${p.work}s or ${p.repsHigh} reps`},
+        {id:"db_rdl", dose:`${p.repsLight}–${p.repsMed} reps (light)`},
+        {id:"pallof", dose:`${p.hold}s each side`},
+        {id:"toe_raise", dose:`${p.repsHigh} reps`}
+      ],
+      timer:{work:p.work, rest:p.rest, rounds:p.rounds, hint:"Cycle through Row → Pull-apart → RDL → Pallof (each side) → Toe Raises."}
+    }),
+    C: (p)=>({
+      name:"Mobility + Conditioning (low impact)",
+      focus:"Joint health • Fat loss",
+      desc:`Keep it easy and smooth. This is your “feel good” day.`,
+      time:"10–15 min",
+      exercises:[
+        {id:"gentle_walk", dose:`3–5 minutes`},
+        {id:"mobility_flow", dose:`5–7 minutes`},
+        {id:"bird_dog", dose:`${p.hold}s each side (slow)`},
+        {id:"farmer_carry", dose:`${p.carry}s (light)`}
+      ],
+      timer:{work:40, rest:15, rounds:2, hint:"Use the timer for Bird Dog + Carry if you want; keep the rest as easy flow."}
+    }),
+    REST: ()=>({
+      name:"Rest Day (Sunday)",
+      focus:"Recovery",
+      desc:"Optional: 10–20 min easy walk + gentle stretching. You’re building consistency.",
+      time:"Rest",
+      exercises:[
+        {id:"gentle_walk", dose:"Optional 10–20 minutes"},
+        {id:"mobility_flow", dose:"Optional 5–10 minutes"}
+      ],
+      timer:null
+    })
+  };
+
+  // Weekly schedule: Mon A, Tue C, Wed B, Thu C, Fri A, Sat B, Sun REST
+  const dowMap = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  function workoutTypeByDate(date){
+    const day = date.getDay(); // 0 Sun
+    if(day===0) return "REST";
+    if(day===1) return "A";
+    if(day===2) return "C";
+    if(day===3) return "B";
+    if(day===4) return "C";
+    if(day===5) return "A";
+    return "B"; // Sat
+  }
+
+  // -----------------------------
+  // Storage
+  // -----------------------------
+  const KEY = "troy_microfit_v1";
+  function loadState(){
+    try{
+      return JSON.parse(localStorage.getItem(KEY)) || {};
+    }catch(e){ return {}; }
+  }
+  function saveState(s){ localStorage.setItem(KEY, JSON.stringify(s)); }
+
+  const state = loadState();
+  if(!state.startDate){
+    // Default: today
+    const t = new Date();
+    state.startDate = toISODate(t);
+    state.done = {}; // {"YYYY-MM-DD": true}
+    saveState(state);
+  }
+  if(!state.done) state.done = {};
+
+  // -----------------------------
+  // Helpers
+  // -----------------------------
+  function toISODate(d){
+    const z = new Date(d.getTime() - d.getTimezoneOffset()*60000);
+    return z.toISOString().slice(0,10);
+  }
+  function parseISO(s){
+    const [y,m,da] = s.split("-").map(Number);
+    return new Date(y, m-1, da);
+  }
+  function daysBetween(a,b){
+    const ms = 24*60*60*1000;
+    const aa = new Date(a.getFullYear(), a.getMonth(), a.getDate());
+    const bb = new Date(b.getFullYear(), b.getMonth(), b.getDate());
+    return Math.floor((bb - aa)/ms);
+  }
+  function clamp(n,min,max){ return Math.max(min, Math.min(max,n)); }
+
+  // Week number based on start date; progresses every 7 days (cap to 8 weeks, then keep at 8)
+  function getWeekForDate(date){
+    const start = parseISO(state.startDate);
+    const delta = daysBetween(start, date);
+    const week = Math.floor(delta/7)+1;
+    return clamp(week, 1, 8);
+  }
+  function getDayForDate(date){
+    const start = parseISO(state.startDate);
+    const delta = daysBetween(start, date);
+    return Math.max(1, delta+1);
+  }
+
+  // Streak calculation ending today (consecutive done days excluding Sundays if you like).
+  function calcStreak(today){
+    let streak=0;
+    for(let i=0;i<365;i++){
+      const d = new Date(today);
+      d.setDate(today.getDate()-i);
+      const iso = toISODate(d);
+      const isRest = workoutTypeByDate(d)==="REST";
+      if(isRest){
+        // rest day doesn't break streak
+        continue;
+      }
+      if(state.done[iso]) streak++;
+      else break;
+    }
+    return streak;
+  }
+
+  function calcCompletionPercent(today){
+    const start = parseISO(state.startDate);
+    const delta = daysBetween(start, today);
+    const totalDays = Math.max(1, delta+1);
+    let target=0, done=0;
+    for(let i=0;i<totalDays;i++){
+      const d = new Date(start);
+      d.setDate(start.getDate()+i);
+      const iso = toISODate(d);
+      if(workoutTypeByDate(d)!=="REST"){
+        target++;
+        if(state.done[iso]) done++;
+      }
+    }
+    if(target===0) return {done:0, target:0, pct:0};
+    return {done, target, pct: Math.round((done/target)*100)};
+  }
+
+  // -----------------------------
+  // Render today + calendar
+  // -----------------------------
+  const els = {
+    pillDay: document.getElementById("pillDay"),
+    pillWeek: document.getElementById("pillWeek"),
+    pillTime: document.getElementById("pillTime"),
+    pillStreak: document.getElementById("pillStreak"),
+    pillDone: document.getElementById("pillDone"),
+    workoutName: document.getElementById("workoutName"),
+    workoutDesc: document.getElementById("workoutDesc"),
+    focusChip: document.getElementById("focusChip"),
+    exerciseList: document.getElementById("exerciseList"),
+    calendar: document.getElementById("calendar"),
+    doneToggle: document.getElementById("doneToggle"),
+    startDateInput: document.getElementById("startDateInput"),
+    settingsDialog: document.getElementById("settingsDialog"),
+    timerText: document.getElementById("timerText"),
+    timerMode: document.getElementById("timerMode"),
+    openSettings: document.getElementById("openSettings"),
+    saveStartDate: document.getElementById("saveStartDate"),
+    resetProgress: document.getElementById("resetProgress"),
+    goToday: document.getElementById("goToday"),
+    startTimer: document.getElementById("startTimer"),
+    pauseTimer: document.getElementById("pauseTimer"),
+    resetTimer: document.getElementById("resetTimer"),
+  };
+
+  let currentViewDate = new Date(); // default today
+  function render(date){
+    const today = new Date();
+    const iso = toISODate(date);
+
+    const dayNum = getDayForDate(date);
+    const week = getWeekForDate(date);
+    const p = progression(week);
+    const type = workoutTypeByDate(date);
+    const w = workouts[type](p);
+
+    els.pillDay.textContent = `Day ${dayNum}`;
+    els.pillWeek.textContent = `Week ${week} / 8`;
+    els.pillTime.textContent = w.time;
+    els.workoutName.textContent = w.name;
+    els.workoutDesc.textContent = w.desc;
+    els.focusChip.textContent = w.focus;
+
+    // done toggle
+    els.doneToggle.checked = !!state.done[iso];
+    els.doneToggle.onchange = ()=>{
+      if(els.doneToggle.checked) state.done[iso]=true;
+      else delete state.done[iso];
+      saveState(state);
+      render(date);
+    };
+
+    // streak & completion
+    const streak = calcStreak(today);
+    const comp = calcCompletionPercent(today);
+    els.pillStreak.textContent = `Streak: ${streak}`;
+    els.pillDone.textContent = `Completed: ${comp.pct}%`;
+
+    // exercises
+    els.exerciseList.innerHTML = "";
+    w.exercises.forEach(item=>{
+      const e = EX[item.id];
+      const div = document.createElement("div");
+      div.className = "ex";
+
+      const tags = (e.tags||[]).map(t=>{
+        const cls = (t.includes("Wrist") || t.includes("Back") || t.includes("Knee")) ? "tag accent" : "tag";
+        return `<span class="${cls}">${t}</span>`;
+      }).join("");
+
+      div.innerHTML = `
+        <div class="ex-head">
+          <div>
+            <div class="ex-name">${e.name}</div>
+            <div class="small"><b>Do:</b> ${item.dose}</div>
+          </div>
+          <div class="ex-tags">${tags}</div>
+        </div>
+        <div class="ex-body small">${e.how}</div>
+        <details>
+          <summary>Demo + quick tips</summary>
+          <div class="small" style="margin-top:8px">
+            <a href="${e.demo}" target="_blank" rel="noopener">Open demo</a><br/>
+            <span style="color:var(--muted)">
+              Tip: move slow, stay in a pain-free range, and stop 1–2 reps before form breaks.
+            </span>
+          </div>
+        </details>
+      `;
+      els.exerciseList.appendChild(div);
+    });
+
+    // calendar: show current week (Mon-Sun)
+    renderWeekCalendar(date);
+
+    // timer: set template based on workout timer
+    setTimerTemplate(w.timer);
+  }
+
+  function renderWeekCalendar(anchorDate){
+    els.calendar.innerHTML = "";
+    const d = new Date(anchorDate);
+    // get Monday of this week
+    const day = d.getDay(); // 0 sun..6 sat
+    const diffToMon = (day===0) ? -6 : (1 - day);
+    d.setDate(d.getDate()+diffToMon);
+
+    const todayISO = toISODate(new Date());
+
+    for(let i=0;i<7;i++){
+      const dd = new Date(d);
+      dd.setDate(d.getDate()+i);
+      const iso = toISODate(dd);
+      const type = workoutTypeByDate(dd);
+      const week = getWeekForDate(dd);
+      const w = workouts[type](progression(week));
+      const cell = document.createElement("div");
+      cell.className = "day";
+      if(state.done[iso]) cell.classList.add("done");
+      if(iso===todayISO) cell.classList.add("today");
+
+      cell.innerHTML = `
+        <div class="dtop">
+          <div class="dow">${dowMap[dd.getDay()]}</div>
+          <div class="num">${dd.getDate()}</div>
+        </div>
+        <div class="wname">${type==="REST" ? "Rest" : w.name.split(" ")[0] + " " + w.name.split(" ")[1]}</div>
+        <div class="small" style="color:var(--muted)">${type==="REST" ? "Recover" : w.time}</div>
+      `;
+      cell.onclick = ()=>{ currentViewDate = dd; render(currentViewDate); window.scrollTo({top:0, behavior:"smooth"}); };
+      els.calendar.appendChild(cell);
+    }
+  }
+
+  // -----------------------------
+  // Timer (simple interval timer)
+  // -----------------------------
+  let timerTemplate = null;
+  let timerInterval = null;
+  let phase = "ready"; // "work", "rest"
+  let round = 1;
+  let exerciseIndex = 0;
+  let remaining = 0;
+
+  function setTimerTemplate(t){
+    timerTemplate = t;
+    stopTimer();
+    if(!t){
+      els.timerText.textContent = "—";
+      els.timerMode.textContent = "No timer for rest day";
+      els.startTimer.disabled = true;
+      els.pauseTimer.disabled = true;
+      els.resetTimer.disabled = true;
+      return;
+    }
+    els.startTimer.disabled = false;
+    els.pauseTimer.disabled = false;
+    els.resetTimer.disabled = false;
+    els.timerText.textContent = "00:00";
+    els.timerMode.textContent = "Ready • " + t.hint;
+  }
+
+  function formatTime(s){
+    const m = Math.floor(s/60);
+    const r = s%60;
+    return String(m).padStart(2,"0")+":"+String(r).padStart(2,"0");
+  }
+
+  function startTimer(){
+    if(!timerTemplate) return;
+    if(timerInterval) return; // already running
+
+    // Initialize if ready
+    if(phase==="ready"){
+      phase = "work";
+      round = 1;
+      exerciseIndex = 0;
+      remaining = timerTemplate.work;
+    }
+
+    timerInterval = setInterval(()=>{
+      remaining--;
+      els.timerText.textContent = formatTime(remaining);
+      els.timerMode.textContent = `${phase.toUpperCase()} • Round ${round}/${timerTemplate.rounds}`;
+
+      if(remaining<=0){
+        if(phase==="work"){
+          phase="rest";
+          remaining = timerTemplate.rest;
+        }else{
+          // advance work
+          phase="work";
+          remaining = timerTemplate.work;
+          exerciseIndex++;
+
+          // After a few stations, count it as a round (we keep it simple)
+          // You’ll cycle through the workout’s main moves with the hint.
+          if(exerciseIndex>=5){ // approx stations
+            exerciseIndex=0;
+            round++;
+            if(round>timerTemplate.rounds){
+              stopTimer();
+              phase="ready";
+              els.timerText.textContent = "00:00";
+              els.timerMode.textContent = "Done! Nice work.";
+              return;
+            }
+          }
+        }
+      }
+    }, 1000);
+
+    els.timerText.textContent = formatTime(remaining);
+  }
+
+  function pauseTimer(){
+    if(timerInterval){
+      clearInterval(timerInterval);
+      timerInterval=null;
+      els.timerMode.textContent = "Paused";
+    }
+  }
+
+  function stopTimer(){
+    if(timerInterval){
+      clearInterval(timerInterval);
+      timerInterval=null;
+    }
+  }
+
+  function resetTimer(){
+    stopTimer();
+    phase="ready"; round=1; exerciseIndex=0; remaining=0;
+    els.timerText.textContent = "00:00";
+    els.timerMode.textContent = timerTemplate ? ("Ready • " + timerTemplate.hint) : "Ready";
+  }
+
+  // -----------------------------
+  // Settings actions
+  // -----------------------------
+  els.openSettings.onclick = ()=>{
+    els.startDateInput.value = state.startDate;
+    els.settingsDialog.showModal();
+  };
+  els.saveStartDate.onclick = ()=>{
+    const v = els.startDateInput.value;
+    if(!v) return;
+    state.startDate = v;
+    // Optionally keep done data; simplest is keep it.
+    saveState(state);
+    els.settingsDialog.close();
+    render(currentViewDate);
+  };
+  els.resetProgress.onclick = ()=>{
+    state.done = {};
+    saveState(state);
+    els.settingsDialog.close();
+    render(currentViewDate);
+  };
+  els.goToday.onclick = ()=>{
+    currentViewDate = new Date();
+    render(currentViewDate);
+    window.scrollTo({top:0, behavior:"smooth"});
+  };
+
+  els.startTimer.onclick = startTimer;
+  els.pauseTimer.onclick = pauseTimer;
+  els.resetTimer.onclick = resetTimer;
+
+  // Initial render
+  render(currentViewDate);
+})();
+</script>
+</body>
+</html>
